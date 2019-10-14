@@ -1,0 +1,22 @@
+{
+  "name": "membership-airbnb",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/aereeeee/membership-airbnb.git",
+  "author": "aereeeee <dofl5576@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "client:build": "yarn workspace client build",
+    "client:dev": "yarn workspace client dev",
+    "client:release": "yarn workspace client standard-version",
+    "server:start": "yarn workspace server nodemon app.js",
+    "server:apidoc": "yarn workspace server apidoc -i server/ -o server/apidoc/ -e node_modules/",
+    "server:test": "yarn workspace server jest /test/*.spec.js",
+    "server:release": "yarn workspace server standard-version"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ]
+}
