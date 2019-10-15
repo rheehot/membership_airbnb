@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       price: { type: DataTypes.INTEGER },
       type: { type: DataTypes.STRING },
-      num_bed: { type: DataTypes.INT },
+      num_bed: { type: DataTypes.INTEGER },
       num_bedroom: { type: DataTypes.INTEGER },
       num_bathroom: { type: DataTypes.INTEGER },
       rate: { type: DataTypes.INTEGER },

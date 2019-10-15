@@ -19,7 +19,7 @@ module.exports = {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    guest: {
+    num_guest: {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
