@@ -9,14 +9,24 @@
   "scripts": {
     "client:build": "yarn workspace client build",
     "client:dev": "yarn workspace client dev",
-    "client:release": "yarn workspace client standard-version",
     "server:start": "yarn workspace server nodemon app.js",
     "server:apidoc": "yarn workspace server apidoc -i server/ -o server/apidoc/ -e node_modules/",
     "server:test": "yarn workspace server jest /test/*.spec.js",
-    "server:release": "yarn workspace server standard-version"
+    "release": "standard-version"
   },
   "workspaces": [
     "client",
     "server"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,scss}": [
+      "git add"
+    ]
+  }
 }
