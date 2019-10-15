@@ -30,6 +30,5 @@ module.exports = (sequelize, DataTypes) => {
     },
     {},
   );
-  Reservation.associate = (models) => {};
   return Reservation;
 };
