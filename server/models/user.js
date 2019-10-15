@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         allowNull: false,
       },
-      password: {
+      pw: {
         type: DataTypes.STRING,
         validate: {
           len: [8, 20],
@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.beforeCreate((user) => {
-    user.password = passwordHash(user.password);
+    user.pw = passwordHash(user.pw);
   });
 
   return User;
