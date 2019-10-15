@@ -8,7 +8,7 @@ const models = require('../models');
 
 const filePath = './utils/room.csv';
 
-const inserter = async () => {
+const inserter = () => {
   const parser = csv.parse({
     columns: true,
     delimiter: ',',

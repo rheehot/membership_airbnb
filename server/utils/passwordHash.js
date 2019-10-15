@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-const mysalt = 'fastcampus';
+const mysalt = 'boostcamp';
 
 module.exports = (password) => crypto
   .createHash('sha512')
