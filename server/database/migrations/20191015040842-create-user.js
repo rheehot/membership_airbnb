@@ -4,7 +4,7 @@ module.exports = {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.BIGINT.UNSIGNED,
+      type: Sequelize.INTEGER,
     },
     userId: {
       allowNull: false,
