@@ -29,6 +29,9 @@ module.exports = {
     num_bed: { type: Sequelize.INTEGER },
     num_bedroom: { type: Sequelize.INTEGER },
     num_bathroom: { type: Sequelize.INTEGER },
+    rate: { type: Sequelize.INTEGER },
+    num_review: { type: Sequelize.INTEGER },
+    image: { type: Sequelize.STRING },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,

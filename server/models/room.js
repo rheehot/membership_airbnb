@@ -23,6 +23,9 @@ module.exports = (sequelize, DataTypes) => {
       num_bed: { type: DataTypes.INTEGER },
       num_bedroom: { type: DataTypes.INTEGER },
       num_bathroom: { type: DataTypes.INTEGER },
+      rate: { type: DataTypes.INTEGER },
+      num_review: { type: DataTypes.INTEGER },
+      image: { type: DataTypes.STRING },
     },
     {},
   );
@@ -30,6 +33,14 @@ module.exports = (sequelize, DataTypes) => {
     Room.belongsTo(models.User, {
       foreignKey: 'hostId',
       targetKey: 'id',
+    });
+    Room.belongsToMany(models.User, {
+      through: 'Reservation',
+      as: 'users',
+      foreignKey: 'roomId',
+      otherKey: 'userId',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
     });
   };
   return Room;

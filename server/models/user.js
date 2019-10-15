@@ -34,10 +34,19 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'hostId',
       sourceKey: 'id',
       onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
+    User.belongsToMany(models.Room, {
+      through: 'Reservation',
+      as: 'rooms',
+      foreignKey: 'userId',
+      otherKey: 'roomId',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
     });
   };
 
-  User.beforeCreate((user, _) => {
+  User.beforeCreate((user) => {
     user.password = passwordHash(user.password);
   });
 
