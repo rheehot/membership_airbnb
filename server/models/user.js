@@ -36,11 +36,9 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });
-    User.belongsToMany(models.Room, {
-      through: 'Reservation',
-      as: 'rooms',
+    User.hasMany(models.Reservation, {
       foreignKey: 'userId',
-      otherKey: 'roomId',
+      sourceKey: 'id',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });

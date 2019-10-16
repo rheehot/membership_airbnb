@@ -1,0 +1,11 @@
+nginx:
+  build: ./nginx
+  links:
+    - app
+  ports:
+    - "80:80"
+
+app:
+  build: ./server
+  ports:
+    - "3000"

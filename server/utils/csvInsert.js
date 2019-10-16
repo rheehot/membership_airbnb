@@ -8,30 +8,32 @@ const models = require('../models');
 
 const filePath = './utils/room.csv';
 
-const inserter = async () => {
+const inserter = () => {
   const parser = csv.parse({
     columns: true,
-    delimiter: ',',
   });
 
   const insert = Async.cargo(async (tasks) => {
     try {
       await models.Room.bulkCreate(tasks);
-    } catch (e) {
-      console.log(e);
+      inserter.drain();
+    } catch (err) {
+      console.log(err);
     }
   });
 
   parser.on('readable', () => {
-    while (parser.read()) {
-      const line = parser.read();
-      if (line) insert.push(line);
+    let line;
+    while ((line = parser.read())) {
+      insert.push(line);
     }
   });
-
+  parser.on('error', (err) => {
+    console.error('err', err.message);
+  });
   parser.on('end', () => {
-    inserter.drain = (count) => {
-      console.log(count);
+    inserter.drain = () => {
+      console.log('완료');
     };
   });
 

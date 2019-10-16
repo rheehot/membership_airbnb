@@ -1,10 +1,9 @@
 ---
 name: Task_issue_template
 about: feature 구현 및
-title: ''
+title: ""
 labels: feature
 assignees: aereeeee
-
 ---
 
 # `<Issue Title>`
@@ -31,11 +30,11 @@ assignees: aereeeee
 
 <br>
 
-> #### 관련 문서
->
+## 관련 문서
+
 > FIXME: fill reference link
->
-> - `[title](link)`
+
+- `[title](link)`
 
 ---
 
