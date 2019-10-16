@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      ReservationId: {
+      roomId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
