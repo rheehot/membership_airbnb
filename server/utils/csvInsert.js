@@ -16,9 +16,9 @@ const inserter = () => {
   const insert = Async.cargo(async (tasks) => {
     try {
       await models.Room.bulkCreate(tasks);
-      await inserter.drain();
-    } catch (e) {
-      console.log(e);
+      inserter.drain();
+    } catch (err) {
+      console.log(err);
     }
   });
 
