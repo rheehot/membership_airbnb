@@ -35,14 +35,19 @@ module.exports = {
     adult: { type: Sequelize.INTEGER },
     child: { type: Sequelize.INTEGER },
     infant: { type: Sequelize.INTEGER },
-    state: { type: Sequelize.STRING },
+    state: {
+      type: Sequelize.STRING,
+      defaultValue: 'reserve',
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     },
     updatedAt: {
       allowNull: false,
       type: Sequelize.DATE,
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     },
   }),
   down: (queryInterface) => queryInterface.dropTable('Reservations'),
