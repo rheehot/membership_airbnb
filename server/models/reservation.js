@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      roomId: {
+      ReservationId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -30,5 +30,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     {},
   );
+  Reservation.associate = (models) => {
+    Reservation.belongsTo(models.User, {
+      foreignKey: 'userId',
+      targetKey: 'id',
+    });
+    Reservation.belongsTo(models.Room, {
+      foreignKey: 'roomId',
+      targetKey: 'id',
+    });
+  };
   return Reservation;
 };

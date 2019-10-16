@@ -33,11 +33,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'hostId',
       targetKey: 'id',
     });
-    Room.belongsToMany(models.User, {
-      through: 'Reservation',
-      as: 'users',
+    Room.hasMany(models.Reservation, {
       foreignKey: 'roomId',
-      otherKey: 'userId',
+      sourceKey: 'id',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });
