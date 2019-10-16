@@ -35,7 +35,10 @@ const getisLogin = async (req, res) => {
   res.status(200).send(req.user);
 };
 
-const getLogout = (req, res) => {};
+const getLogout = (req, res) => {
+  res.clearCookie('access-token');
+  res.redirect('/');
+};
 
 module.exports = {
   postJoin,
