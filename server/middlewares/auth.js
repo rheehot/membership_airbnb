@@ -12,15 +12,21 @@ const EXPIRES = process.env.JWT_EXPIRE;
 const isAuthenticated = (req, res, next) => {
   const token = req.cookies['access-token'];
   if (!token) {
-    res.status(204).send({ msg: 'login required' });
+    res.status(200).send({
+      status: 401,
+      msg: 'login required',
+    });
   }
   try {
     const decoded = jwt.verify(token, SECRET);
     req.user = decoded;
+    next();
   } catch (err) {
-    res.status(204).send({ msg: 'Invalid token' });
+    res.status(200).send({
+      status: 403,
+      msg: 'Invalid token',
+    });
   }
-  return next();
 };
 
 /**
@@ -34,10 +40,8 @@ const signToken = (user) => {
   const token = jwt.sign({ user_id, email }, SECRET, { expiresIn: EXPIRES });
 
   const cookieOption = {
-    maxAge: EXPIRES,
-    expires: new Date(Date.now() + EXPIRES),
+    expires: new Date(Date.now() + 1000 * 60 * 60),
     httpOnly: true,
-    signed: true,
   };
 
   return { token, cookieOption };
