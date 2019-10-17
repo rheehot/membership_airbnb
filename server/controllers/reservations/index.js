@@ -10,6 +10,6 @@ router
   .get('/booker/:booker_id', ctrl.getUserReserv)
   .get('/room/:room_id', ctrl.getRoomReserv)
   .post('/', csrfProtection, ctrl.postReserv)
-  .delete('/:reservation_id', ctrl.delReserv);
+  .delete('/:id', ctrl.delReserv);
 
 module.exports = router;

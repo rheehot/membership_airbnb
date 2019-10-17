@@ -43,10 +43,10 @@ const getRoomReserv = async (req, res, next) => {
 };
 
 const delReserv = async (req, res, next) => {
-  const { reservation_id } = req.params;
+  const { id } = req.params;
   try {
     await models.Reservation.destroy({
-      where: { id: reservation_id },
+      where: { id },
     });
     res.status(200).end();
   } catch (err) {
