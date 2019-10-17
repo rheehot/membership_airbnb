@@ -31,10 +31,6 @@ const postLogin = async (req, res, next) => {
   }
 };
 
-const getisLogin = async (req, res) => {
-  res.status(200).send(req.user);
-};
-
 const getLogout = (req, res) => {
   res.clearCookie('access-token');
   res.redirect('/');
@@ -43,6 +39,5 @@ const getLogout = (req, res) => {
 module.exports = {
   postJoin,
   postLogin,
-  getisLogin,
   getLogout,
 };

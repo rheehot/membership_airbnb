@@ -10,13 +10,14 @@ const signToken = (user) => {
 
 const isAuthenticated = (req, res, next) => {
   const token = req.cookies['access-token'];
-  if (!token) return next();
-
+  if (!token) {
+    res.status(204).send({ msg: 'login required' });
+  }
   try {
     const decoded = jwt.verify(token, SECRET);
     req.user = decoded;
   } catch (err) {
-    req.user = null;
+    res.status(204).send({ msg: 'Invalid token' });
   }
   return next();
 };
