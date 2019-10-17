@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
+const milliseconds = require('../utils/getMilliSec');
 
 const SECRET = process.env.JWT_SECRET;
-const EXPIRES = process.env.JWT_EXPIRE;
+const EXPIRES = milliseconds(process.env.JWT_EXPIRE);
 
 /**
  * JWT verify 유저 인증
@@ -40,7 +41,7 @@ const signToken = (user) => {
   const token = jwt.sign({ user_id, email }, SECRET, { expiresIn: EXPIRES });
 
   const cookieOption = {
-    expires: new Date(Date.now() + 1000 * 60 * 60),
+    expires: new Date(Date.now() + EXPIRES),
     httpOnly: true,
   };
 

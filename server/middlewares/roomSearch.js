@@ -3,7 +3,7 @@ const dayjs = require('dayjs');
 
 const op = Sequelize.Op;
 
-const searchRoomCheck = (req, res, next) => {
+const roomSearch = (req, res, next) => {
   const {
     min_price,
     max_price,
@@ -26,8 +26,12 @@ const searchRoomCheck = (req, res, next) => {
   }
 
   if (check_in || check_out) {
-    const checkIn = check_in || dayjs(check_out).subtract(1, 'day').format('YYYY-MM-DD');
-    const checkOut = check_out || dayjs(check_in).add(1, 'day').format('YYYY-MM-DD');
+    const checkIn = check_in || dayjs(check_out)
+      .subtract(1, 'day')
+      .format('YYYY-MM-DD');
+    const checkOut = check_out || dayjs(check_in)
+      .add(1, 'day')
+      .format('YYYY-MM-DD');
 
     const dateQuery = { [op.notBetween]: [checkIn, checkOut] };
     reservationQuery.check_in = dateQuery;
@@ -59,4 +63,4 @@ const searchRoomCheck = (req, res, next) => {
   return next();
 };
 
-module.exports = { searchRoomCheck };
+module.exports = roomSearch;
