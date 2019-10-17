@@ -2,7 +2,7 @@
 module.exports = {
   up: (queryInterface) => queryInterface.bulkInsert('Rooms', [
     {
-      hostId: 1,
+      host_id: 1,
       name: '숙소1',
       num_guest: 8,
       price: 150000,
@@ -12,7 +12,7 @@ module.exports = {
       num_bathroom: 2,
     },
     {
-      hostId: 1,
+      host_id: 1,
       name: '숙소2',
       num_guest: 2,
       price: 10000,
@@ -22,7 +22,7 @@ module.exports = {
       num_bathroom: 1,
     },
     {
-      hostId: 1,
+      host_id: 1,
       name: '숙소3',
       num_guest: 12,
       price: 200000,
@@ -35,7 +35,7 @@ module.exports = {
   {}),
 
   down: (queryInterface) => queryInterface.bulkDelete('Rooms', {
-    hostId: {
+    host_id: {
       $in: [1],
     },
   }, {}),

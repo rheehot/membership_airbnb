@@ -4,9 +4,9 @@ module.exports = {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER,
+      type: Sequelize.BIGINT,
     },
-    userId: {
+    booker_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       foreignKey: true,
@@ -15,7 +15,7 @@ module.exports = {
         key: 'id',
       },
     },
-    roomId: {
+    room_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       foreignKey: true,
@@ -24,11 +24,11 @@ module.exports = {
         key: 'id',
       },
     },
-    checkIn: {
+    check_in: {
       type: Sequelize.DATE,
       allowNull: false,
     },
-    checkOut: {
+    check_out: {
       type: Sequelize.DATE,
       allowNull: false,
     },

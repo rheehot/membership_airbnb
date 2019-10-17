@@ -6,7 +6,7 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    hostId: {
+    host_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
       foreignKey: true,
