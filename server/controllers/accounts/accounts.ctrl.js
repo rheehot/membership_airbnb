@@ -14,10 +14,10 @@ const postJoin = async (req, res, next) => {
 };
 
 const postLogin = async (req, res, next) => {
-  const { userId, pw } = req.body;
+  const { user_id, pw } = req.body;
   try {
     const user = await models.User.findOne({
-      where: { userId, pw: passwordHash(pw) },
+      where: { user_id, pw: passwordHash(pw) },
     });
     if (!user) {
       res.status(204).end();

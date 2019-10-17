@@ -7,34 +7,34 @@ const searchRoomCheck = (req, res, next) => {
   const reservationQuery = {};
 
   const {
-    minPrice,
-    maxPrice,
-    checkIn,
-    checkOut,
+    min_price,
+    max_price,
+    check_in,
+    check_out,
     num_guest,
     num_bed,
     num_bedroom,
     num_bathroom,
   } = req.query;
 
-  if (minPrice || maxPrice) {
+  if (min_price || max_price) {
     let min;
     let max;
-    if (!minPrice) {
+    if (!min_price) {
       min = 0;
-    } else if (!maxPrice) {
+    } else if (!max_price) {
       max = Infinity;
     } else {
       roomQuery.price = { [op.between]: [min, max] };
     }
   }
 
-  if (checkIn && checkOut) {
+  if (check_in && check_out) {
     reservationQuery.checkIn = {
-      [op.notBetween]: [checkIn, checkOut],
+      [op.notBetween]: [check_in, check_out],
     };
     reservationQuery.checkOut = {
-      [op.notBetween]: [checkIn, checkOut],
+      [op.notBetween]: [check_in, check_out],
     };
   }
 
