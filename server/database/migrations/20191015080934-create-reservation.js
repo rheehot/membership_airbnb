@@ -7,7 +7,7 @@ module.exports = {
       type: Sequelize.BIGINT,
     },
     booker_id: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.BIGINT,
       allowNull: false,
       foreignKey: true,
       references: {
@@ -16,7 +16,7 @@ module.exports = {
       },
     },
     room_id: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.BIGINT,
       allowNull: false,
       foreignKey: true,
       references: {

@@ -1,14 +1,15 @@
 const { Router } = require('express');
-const { isAuthenticated } = require('../../middlewares/auth');
+const auth = require('../../middlewares/auth');
+const csrfProtection = require('../../middlewares/csrf');
 
 const router = Router();
 const ctrl = require('./reservations.ctrl');
 
 router
-  .use(isAuthenticated)
-  .post('/', ctrl.postReserv)
-  .get('/:userId', ctrl.getUserReserv)
-  .get('/:roomId', ctrl.getRoomReserv)
-  .delete('/:reservationId', ctrl.delReserv);
+  .use(auth.isAuthenticated)
+  .get('/booker/:booker_id', ctrl.getUserReserv)
+  .get('/room/:room_id', ctrl.getRoomReserv)
+  .post('/', csrfProtection, ctrl.postReserv)
+  .delete('/:reservation_id', ctrl.delReserv);
 
 module.exports = router;

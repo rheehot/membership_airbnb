@@ -7,7 +7,7 @@ module.exports = {
       type: Sequelize.BIGINT,
     },
     host_id: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.BIGINT,
       allowNull: false,
       foreignKey: true,
       references: {

@@ -10,10 +10,11 @@ const postReserv = async (req, res, next) => {
 };
 
 const getUserReserv = async (req, res, next) => {
-  const { user_id } = req.body;
+  const { booker_id } = req.params;
+
   try {
     const reserv = await models.Reservation.findAll({
-      where: { user_id },
+      where: { booker_id },
     });
     if (!reserv) {
       res.status(204).end();
@@ -25,18 +26,37 @@ const getUserReserv = async (req, res, next) => {
   }
 };
 
-const getRoomReserv = async (req, res) => {
-  res.status(200).send(req.user);
+const getRoomReserv = async (req, res, next) => {
+  const { room_id } = req.params;
+  try {
+    const reserv = await models.Reservation.findAll({
+      where: { room_id },
+    });
+    if (!reserv) {
+      res.status(204).end();
+    } else {
+      res.status(200).send(reserv);
+    }
+  } catch (err) {
+    next(err);
+  }
 };
 
-const delReserve = (req, res) => {
-  res.clearCookie('access-token');
-  res.redirect('/');
+const delReserv = async (req, res, next) => {
+  const { reservation_id } = req.params;
+  try {
+    await models.Reservation.destroy({
+      where: { id: reservation_id },
+    });
+    res.status(200).end();
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports = {
   postReserv,
   getRoomReserv,
   getUserReserv,
-  delReserve,
+  delReserv,
 };

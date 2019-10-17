@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       onUpdate: 'CASCADE',
     });
     User.hasMany(models.Reservation, {
-      foreignKey: 'user_id',
+      foreignKey: 'booker_id',
       sourceKey: 'id',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
