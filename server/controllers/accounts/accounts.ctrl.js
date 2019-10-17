@@ -5,8 +5,7 @@ const passwordHash = require('../../utils/passwordHash');
 const postJoin = async (req, res, next) => {
   try {
     const user = await models.User.create(req.body);
-    const token = auth.signToken(user);
-    res.cookie('access-token', token);
+    res.cookie('access-token', ...auth.signToken(user));
     res.status(200).end();
   } catch (err) {
     next(err);
@@ -22,8 +21,7 @@ const postLogin = async (req, res, next) => {
     if (!user) {
       res.status(204).end();
     } else {
-      const token = auth.signToken(user);
-      res.cookie('access-token', token);
+      res.cookie('access-token', ...auth.signToken(user));
       res.status(200).end();
     }
   } catch (err) {
