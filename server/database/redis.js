@@ -9,5 +9,4 @@ redisClient.on('error', (err) => {
   console.log('redis error occured :', err);
 });
 
-
 module.exports = redisClient;

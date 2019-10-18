@@ -14,42 +14,52 @@
 
 > 부스트캠프 멤버십 에어비엔비 예약 서비스 구현하기
 
-### [Demo](exapmle.com)
+#### DEMO http://106.10.41.137/
+
+## Backend
+---
+### DB 모델링
+
+테이블 정보
+https://github.com/connect-foundation/membership-airbnb/pull/74
+  
+### 캐싱 전략
+  
+**숙소 검색 시 `pagination`에 캐싱 구현**
+- page를 key로 가지고 해당하는 숙소 데이터를 value로 가짐
+- page별 데이터를 캐싱하고 새로고침시 DB와 동기화하는 방식
+- 검색 시 검색 옵션이 key로 함께 사용되어야함
+  - 검색 옵션 별 숙소 데이터는 자주 접근하는 데이터가 아님
+  - 동기화가 자주 이루어져야함
+  - 이미 페이지네이션을 통해 DB 요청 부담을 줄이고 있음
+- 따라서 PASS
+ 
+**숙소 상세 조회에 캐싱 구현**
+- 숙소 Id를 key로 사용
+- redis 캐시 DB에 숙소 아이디로 조회
+  - MISS : mysql DB 조회 - 캐싱(만료시간 짧게 설정), 응답
+  - HIT : 캐시 데이터 응답
+
+### Batch job
+```
+* /server/batch/csv폴더에 파일 insert
+yarn batch 
+```
+
+---
 
 ## Install
 
 ```sh
-npm install
+yarn install
 ```
 
 ## Usage
 
 ```sh
-npm start
+yarn start
 ```
 
-## Run tests
-
-```sh
-npm run test
-```
-
-## Technologies
-
-| **Tech** | **Description**|
-| --- | --- |
-| [Node.js](https://nodejs.org/ko/) | Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine |
-| [Express](https://expressjs.com/) | Fast, unopinionated, minimalist web framework for Node.js|
-| [nodemon](https://www.npmjs.com/package/nodemon)| nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected |
-| [React](https://facebook.github.io/react/) | A declarative, efficient, and flexible JavaScript library for building user interfaces. |
-| [React Router](https://reacttraining.com/react-router/) | Declarative routing for React |
-| [Immer](https://github.com/immerjs/immer) | Create the next immutable state by mutating the current one |
-| [Styled Components](https://www.styled-components.com/) | Visual primitives for the component age. Use the best bits of ES6 and CSS to style your apps without stress |
-| [ESLint](https://eslint.org/) | The pluggable linting utility for JavaScript and JSX |
-| [Editor Config](https://editorconfig.org) | EditorConfig helps maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs. |
-| [Husky](https://github.com/typicode/husky)| Prevent bad git commit, git push and more 🐶 woof! |
-| [Commitlint](https://commitlint.js.org)| Lint commit messages  |
-| [apidoc](https://http://apidocjs.com)| creates a documentation from API annotations in your source code.|
 
 ## Author
 
