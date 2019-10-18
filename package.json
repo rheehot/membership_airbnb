@@ -10,9 +10,7 @@
     "client:build": "yarn workspace client build",
     "client:dev": "yarn workspace client dev",
     "server:start": "yarn workspace server nodemon app.js",
-    "server:apidoc": "yarn workspace server apidoc -i server/ -o server/apidoc/ -e node_modules/",
-    "server:test": "yarn workspace server jest /test/*.spec.js",
-    "release": "standard-version"
+    "batch": "node server/batch/batchService.js"
   },
   "workspaces": [
     "client",
@@ -28,5 +26,8 @@
     "*.{js,jsx,ts,tsx,json,css,scss}": [
       "git add"
     ]
+  },
+  "dependencies": {
+    "redis": "^2.8.0"
   }
 }

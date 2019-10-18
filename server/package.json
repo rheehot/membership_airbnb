@@ -3,10 +3,8 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon app.js",
-    "apidoc": "apidoc -i server/ -o server/apidoc/ -e node_modules/",
-    "test": "mocha server/test/*.spec.js",
-    "release": "standard-version"
+    "apidoc": "apidoc -i controllers/ -o apidoc/ -e node_modules/",
+    "test": "mocha server/test/*.spec.js"
   },
   "dependencies": {
     "apidoc": "^0.17.7",
@@ -16,7 +14,9 @@
     "connect-redis": "^4.0.2",
     "cookie-parser": "~1.4.4",
     "core-js": "^3.0.1",
+    "csurf": "^1.10.0",
     "csv": "^5.1.3",
+    "dayjs": "^1.8.16",
     "debug": "~2.6.9",
     "dotenv": "^8.1.0",
     "ejs": "~2.6.1",

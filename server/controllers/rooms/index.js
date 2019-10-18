@@ -10,20 +10,10 @@ const ctrl = require('./rooms.ctrl');
 router
   .get('/', ctrl.getAllRooms)
   .get('/:id', searchCache, ctrl.getRoom)
-  .put(
-    '/:id',
-    csrfProtection,
-    auth.isAuthenticated,
-    deleteCache,
-    ctrl.updateRoom,
-  )
-  .delete(
-    '/:id',
-    csrfProtection,
-    auth.isAuthenticated,
-    deleteCache,
-    ctrl.deleteRoom,
-  )
-  .get('/search', roomSearch, ctrl.getFilteredRooms);
+  .get('/search', roomSearch, ctrl.getFilteredRooms)
+  .use(csrfProtection)
+  .use(auth.isAuthenticated)
+  .put('/:id', deleteCache, ctrl.updateRoom)
+  .delete('/:id', deleteCache, ctrl.deleteRoom);
 
 module.exports = router;
