@@ -4,10 +4,10 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'User',
     {
-      userId: {
+      user_id: {
         type: DataTypes.STRING,
         validate: {
-          len: [0, 50],
+          len: [0, 20],
         },
         allowNull: false,
       },
@@ -31,13 +31,13 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = (models) => {
     User.hasMany(models.Room, {
-      foreignKey: 'hostId',
+      foreignKey: 'host_id',
       sourceKey: 'id',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });
     User.hasMany(models.Reservation, {
-      foreignKey: 'userId',
+      foreignKey: 'booker_id',
       sourceKey: 'id',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',

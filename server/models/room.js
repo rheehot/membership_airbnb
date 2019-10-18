@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Room = sequelize.define(
     'Room',
     {
-      hostId: {
+      host_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -30,11 +30,11 @@ module.exports = (sequelize, DataTypes) => {
   );
   Room.associate = (models) => {
     Room.belongsTo(models.User, {
-      foreignKey: 'hostId',
+      foreignKey: 'host_id',
       targetKey: 'id',
     });
     Room.hasMany(models.Reservation, {
-      foreignKey: 'roomId',
+      foreignKey: 'room_id',
       sourceKey: 'id',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',

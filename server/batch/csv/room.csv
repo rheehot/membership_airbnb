@@ -1,4 +1,4 @@
-type,name,rate,thumbnail,price,num_guest,num_bedroom,num_bed,num_bathroom,num_review,hostId
+type,name,rate,thumbnail,price,num_guest,num_bedroom,num_bed,num_bathroom,num_review,host_id
 로프트 전체,SEOUL Station Cozy&Relax place,4.9,https://a0.muscache.com/im/pictures/a9a8bd45-33cd-49af-898a-081f901a098f.jpg?aki_policy=large,290000,4,9,9,7,44,1
 타운하우스 전체,Mapo basecamp,4.79,https://a0.muscache.com/im/pictures/69f94036-467f-4206-bd4f-a6259448cf50.jpg?aki_policy=large,240000,2,2,10,2,912,8
 아파트 전체,KOO House Seoul/Hongdae/Yeouido,4.69,https://a0.muscache.com/im/pictures/c448d8f3-3c31-4119-b69f-80f251621f94.jpg?aki_policy=large,250000,3,1,0,4,451,7

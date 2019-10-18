@@ -13,14 +13,14 @@ const app = express();
 db.sequelize
   .authenticate()
   .then(() => {
-    console.log('Connection has been established successfully.');
+    console.log('DB Connect.');
   })
   .then(() => {
+    // db.sequelize.sync();
     console.log('DB Sync complete.');
-    return db.sequelize.sync();
   })
   .catch((err) => {
-    console.error('Unable to connect to the database:', err);
+    console.error('error occured : ', err);
   });
 
 app.set('views', path.join(__dirname, 'views'));

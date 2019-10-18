@@ -2,19 +2,19 @@ module.exports = (sequelize, DataTypes) => {
   const Reservation = sequelize.define(
     'Reservation',
     {
-      userId: {
+      booker_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      roomId: {
+      room_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      checkIn: {
+      check_in: {
         type: DataTypes.DATE,
         allowNull: false,
       },
-      checkOut: {
+      check_out: {
         type: DataTypes.DATE,
         allowNull: false,
       },
@@ -32,11 +32,11 @@ module.exports = (sequelize, DataTypes) => {
   );
   Reservation.associate = (models) => {
     Reservation.belongsTo(models.User, {
-      foreignKey: 'userId',
+      foreignKey: 'booker_id',
       targetKey: 'id',
     });
     Reservation.belongsTo(models.Room, {
-      foreignKey: 'roomId',
+      foreignKey: 'room_id',
       targetKey: 'id',
     });
   };

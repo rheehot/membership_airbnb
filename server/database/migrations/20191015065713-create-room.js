@@ -4,10 +4,10 @@ module.exports = {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER,
+      type: Sequelize.BIGINT,
     },
-    hostId: {
-      type: Sequelize.INTEGER,
+    host_id: {
+      type: Sequelize.BIGINT,
       allowNull: false,
       foreignKey: true,
       references: {

@@ -6,7 +6,7 @@ const Async = require('async');
 const csv = require('csv');
 const models = require('../models');
 
-const filePath = './utils/room.csv';
+const filePath = `${__dirname}/csv/room.csv`;
 
 const inserter = () => {
   const parser = csv.parse({
@@ -17,8 +17,8 @@ const inserter = () => {
     try {
       await models.Room.bulkCreate(tasks);
       inserter.drain();
-    } catch (err) {
-      console.log(err);
+    } catch (e) {
+      console.log(e);
     }
   });
 

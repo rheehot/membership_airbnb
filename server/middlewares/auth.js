@@ -1,24 +1,51 @@
 const jwt = require('jsonwebtoken');
+const milliseconds = require('../utils/getMilliSec');
 
 const SECRET = process.env.JWT_SECRET;
-const EXPIRES = process.env.JWT_EXPIRE;
+const EXPIRES = milliseconds(process.env.JWT_EXPIRE);
 
-const signToken = (user) => {
-  const { userId, email } = user;
-  return jwt.sign({ userId, email }, SECRET, { expiresIn: EXPIRES });
-};
-
+/**
+ * JWT verify 유저 인증
+ *
+ * @param {*} req,res,next
+ * @return {*} next
+ */
 const isAuthenticated = (req, res, next) => {
   const token = req.cookies['access-token'];
-  if (!token) return next();
-
+  if (!token) {
+    res.status(200).send({
+      status: 401,
+      msg: 'login required',
+    });
+  }
   try {
     const decoded = jwt.verify(token, SECRET);
     req.user = decoded;
+    next();
   } catch (err) {
-    req.user = null;
+    res.status(200).send({
+      status: 403,
+      msg: 'Invalid token',
+    });
   }
-  return next();
+};
+
+/**
+ * JWT 발행
+ *
+ * @param {object} user
+ * @return {object} {token, cookieOption}
+ */
+const signToken = (user) => {
+  const { user_id, email } = user;
+  const token = jwt.sign({ user_id, email }, SECRET, { expiresIn: EXPIRES });
+
+  const cookieOption = {
+    expires: new Date(Date.now() + EXPIRES),
+    httpOnly: true,
+  };
+
+  return { token, cookieOption };
 };
 
 module.exports = { signToken, isAuthenticated };
