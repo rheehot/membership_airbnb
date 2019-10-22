@@ -9,8 +9,8 @@
   "scripts": {
     "client:build": "yarn workspace client build",
     "client:dev": "yarn workspace client dev",
-    "start": "yarn workspace server node app.js",
-    "batch": "node server/batch/batchService.js"
+    "server:start": "yarn workspace server start",
+    "batch": "yarn workspace server batch"
   },
   "workspaces": [
     "client",

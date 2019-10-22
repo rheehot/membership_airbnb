@@ -1,9 +1,9 @@
-const dotenv = require('dotenv');
-
-dotenv.config();
 const fs = require('fs');
 const Async = require('async');
 const csv = require('csv');
+const dotenv = require('dotenv');
+
+dotenv.config();
 const models = require('../models');
 
 const filePath = `${__dirname}/csv/room.csv`;
