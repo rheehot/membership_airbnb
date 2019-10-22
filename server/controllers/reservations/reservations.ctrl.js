@@ -9,6 +9,7 @@ const models = require('../../models');
  * @apiParam {Json} body body.
  * @apiParamExample {json} User Action:
  * {
+ *     "id":1,
  *     "booker_id": 1,
  *     "room_id": 1,
  *     "check_in": "2019-10-10,
@@ -43,6 +44,7 @@ const postReserv = async (req, res, next) => {
  * HTTP/1.1 200 OK
  * [
  *   {
+ *     "id":1,
  *     "booker_id": 1,
  *     "room_id": 1,
  *     "check_in": "2019-10-10,
@@ -83,6 +85,7 @@ const getUserReserv = async (req, res, next) => {
  * HTTP/1.1 200 OK
  * [
  *   {
+ *     "id":1,
  *     "booker_id": 1,
  *     "room_id": 1,
  *     "check_in": "2019-10-10,

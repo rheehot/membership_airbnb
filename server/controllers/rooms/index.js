@@ -9,8 +9,8 @@ const ctrl = require('./rooms.ctrl');
 
 router
   .get('/', ctrl.getAllRooms)
-  .get('/:id', searchCache, ctrl.getRoom)
   .get('/search', roomSearch, ctrl.getFilteredRooms)
+  .get('/:id', searchCache, ctrl.getRoom)
   .use(csrfProtection)
   .use(auth.isAuthenticated)
   .put('/:id', deleteCache, ctrl.updateRoom)
