@@ -1,5 +1,5 @@
 const Path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -8,18 +8,13 @@ module.exports = {
   },
   output: {
     path: Path.join(__dirname, '../build'),
-    filename: 'js/[name].js',
-  },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-      name: false,
-    },
+    filename: 'js/bundle.js',
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: Path.resolve(__dirname, '../src/index.html'),
+      template: 'public/index.html',
+      favicon: 'public/images/favicon.ico',
     }),
   ],
   resolve: {
