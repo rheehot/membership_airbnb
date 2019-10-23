@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { GlobalProvider, Layout } from './components';
-import { Home, Room, User } from './pages';
+import { Home, User } from './containers';
 import { GlobalStyle, theme } from './styles';
 
 const App = () => (
@@ -14,7 +14,6 @@ const App = () => (
         <Layout>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="room/:room" component={Room} />
             <Route exact path="user/:user" component={User} />
           </Switch>
         </Layout>

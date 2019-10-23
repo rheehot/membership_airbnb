@@ -6,7 +6,6 @@ ADD . /opt/app/airbnb
 
 RUN cd /opt/app/airbnb && yarn install
 
-COPY docker/start.sh /usr/local/bin/
-RUN ln -s usr/local/bin/start.sh /start.sh
+EXPOSE  3000
 
 CMD ["yarn", "start"]

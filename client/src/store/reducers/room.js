@@ -7,16 +7,19 @@ export const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'FETCH_ROOMS_REQUEST':
+    case 'SET_OPTIONS':
       return {
         ...state,
         options: action.payload.options,
+      };
+    case 'FETCH_ROOMS_REQUEST':
+      return {
+        ...state,
         loading: true,
       };
     case 'FETCH_ROOMS_SUCCESS':
       return {
         ...state,
-        options: action.payload.options,
         rooms: action.payload.rooms,
         loading: false,
       };

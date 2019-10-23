@@ -1,48 +1,37 @@
+version: "3"
 nginx:
   container_name: nginx
   build: ./nginx
   links:
-    - app
+    - app:app
   ports:
     - "80:80"
-  networks:
-    - backend
 
 app:
   container_name: app
   build:
     context: .
     dockerfile: Dockerfile
+   - mysql:mysql
   ports:
     - "3000"
-  networks:
-    - backend
+  restart: always
 
 mysql:
   container_name: mysql
-  image: mysql:latest
+  image: mysql:5.5
   restart: always
-  networks:
-    - backend
   ports:
     - "3306"
   volumes:
-    - mysql:/data/db
+    - mysql:/home/data/db
   environment:
-    - MYSQL_USER=dofl5576
-    - MYSQL_PASSWORD=
 
 redis:
   container_name: redis
-  image: redis:latest
+  image: redis:alpine
   ports:
     - "6379"
   volumes:
-    - redis:/data/redis
+    - redis:/home/data/redis
   restart: always
-  networks:
-    - backend
-
-networks:
-  backend:
-    driver: bridge

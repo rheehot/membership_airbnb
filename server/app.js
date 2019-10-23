@@ -1,11 +1,11 @@
-const dotenv = require('dotenv');
-
-dotenv.config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const dotenv = require('dotenv');
+
+dotenv.config();
 const db = require('./models');
 
 const app = express();
@@ -14,10 +14,6 @@ db.sequelize
   .authenticate()
   .then(() => {
     console.log('DB Connect.');
-  })
-  .then(() => {
-    // db.sequelize.sync();
-    console.log('DB Sync complete.');
   })
   .catch((err) => {
     console.error('error occured : ', err);

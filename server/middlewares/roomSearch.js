@@ -9,6 +9,7 @@ const roomSearch = (req, res, next) => {
     max_price,
     check_in,
     check_out,
+    type,
     num_guest,
     num_bed,
     num_bedroom,
@@ -33,17 +34,25 @@ const roomSearch = (req, res, next) => {
       .add(1, 'day')
       .format('YYYY-MM-DD');
 
-    const dateQuery = { [op.notBetween]: [checkIn, checkOut] };
-    reservationQuery.check_in = dateQuery;
-    reservationQuery.check_out = dateQuery;
-
-    const { not } = op;
-    reservationQuery[not] = [
-      { check_in: { [op.lte]: new Date(checkIn) } },
-      { check_out: { [op.gte]: new Date(checkOut) } },
+    const { or, and } = op;
+    reservationQuery[or] = [
+      {
+        [and]: [
+          { check_in: { [op.gte]: new Date(checkOut) } },
+          { check_in: { [op.gte]: new Date(checkIn) } },
+        ],
+      },
+      {
+        [and]: [
+          { check_out: { [op.lte]: new Date(checkOut) } },
+          { check_out: { [op.lte]: new Date(checkIn) } },
+        ],
+      },
     ];
   }
-
+  if (type) {
+    roomQuery.type = type;
+  }
   if (num_guest) {
     roomQuery.num_guest = { [op.gte]: num_guest };
   }
