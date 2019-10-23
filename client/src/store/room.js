@@ -1,22 +1,19 @@
-export const initialState = {
-  options: null,
+export const initialRoomState = {
   rooms: null,
   loading: false,
   error: null,
 };
 
-const reducer = (state, action) => {
+const roomReducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_ROOMS_REQUEST':
       return {
         ...state,
-        options: action.payload.options,
         loading: true,
       };
     case 'FETCH_ROOMS_SUCCESS':
       return {
         ...state,
-        options: action.payload.options,
         rooms: action.payload.rooms,
         loading: false,
       };
@@ -41,4 +38,4 @@ const reducer = (state, action) => {
   }
 };
 
-export default reducer;
+export default roomReducer;

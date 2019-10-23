@@ -1,1 +1,1 @@
-export { default as reducer, initialState } from './reducer';
+export { default as roomReducer, initialRoomState } from './room';
