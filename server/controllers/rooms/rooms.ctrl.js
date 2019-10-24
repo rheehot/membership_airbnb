@@ -4,7 +4,7 @@ const { saveCache } = require('../../middlewares/roomCache');
 
 // 모든 숙소 조회
 /**
- * @api {get} /api/rooms/ Get All Rooms
+ * @api {get} /api/rooms Get All Rooms
  * @apiName GetAllRooms
  * @apiGroup Rooms
  *
@@ -31,8 +31,10 @@ const { saveCache } = require('../../middlewares/roomCache');
 const getAllRooms = async (req, res, next) => {
   const pageOption = paginate(req.query.page, process.env.PAGE_LIMIT);
   try {
-    const rooms = await models.Room.findAll(pageOption);
-    res.status(200).send(rooms);
+    const { count, rows: rooms } = await models.Room.findAndCountAll(
+      pageOption,
+    );
+    res.status(200).send({ count, rooms });
   } catch (err) {
     next(err);
   }
@@ -40,7 +42,7 @@ const getAllRooms = async (req, res, next) => {
 
 // 숙소 검색
 /**
- * @api {get} /api/rooms/search/ Get Filtered Rooms
+ * @api {get} /api/rooms/search? Get Filtered Rooms
  * @apiName GetFilteredRooms
  * @apiGroup Rooms
  *
@@ -76,7 +78,7 @@ const getAllRooms = async (req, res, next) => {
 const getFilteredRooms = async (req, res, next) => {
   const pageOption = paginate(req.query.page, process.env.PAGE_LIMIT);
   try {
-    const filteredRooms = await models.Room.findAll({
+    const { count, rows: rooms } = await models.Room.findAndCountAll({
       ...pageOption,
       where: req.roomQuery,
       include: [
@@ -87,7 +89,7 @@ const getFilteredRooms = async (req, res, next) => {
         },
       ],
     });
-    res.status(200).send(filteredRooms);
+    res.status(200).send({ count, rooms });
   } catch (err) {
     next(err);
   }
