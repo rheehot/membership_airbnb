@@ -6,6 +6,10 @@ const S = {
   Wrapper: styled.div`
     width:360px;
     height:300px;
+    position:absolute;
+    background:#fff;
+    color:#000;
+    z-index:999;
     box-shadow:rgba(0, 0, 0, 0.15) 0px 10px 37px;
     border: 1px solid rgba(118, 118, 118, 0.28);
     border-radius:12px;
