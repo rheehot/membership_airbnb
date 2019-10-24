@@ -30,9 +30,9 @@ const S = {
 };
 const RoomList = ({ rooms }) => (
   <S.Wrapper>
-    <S.RoomCounter>숙소 {rooms.length}개</S.RoomCounter>
+    <S.RoomCounter>숙소 {rooms.count}개</S.RoomCounter>
     <S.OrderedList>
-      {rooms.map((room) => (
+      {rooms.rows.map((room) => (
         <S.ListItem key={room.id}>
           <S.Thumbnail src={room.thumbnail} />
           <S.RoomInfo>
@@ -51,19 +51,22 @@ const RoomList = ({ rooms }) => (
 );
 
 RoomList.propTypes = {
-  rooms: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-      thumbnail: PropTypes.string,
-      rate: PropTypes.number,
-      reviews: PropTypes.number,
-      numGuest: PropTypes.number,
-      numBed: PropTypes.number,
-      numBedRoom: PropTypes.number,
-      numBathRoom: PropTypes.number,
-    }),
-  ).isRequired,
+  rooms: PropTypes.shape({
+    count: PropTypes.number,
+    rows: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        thumbnail: PropTypes.string,
+        rate: PropTypes.number,
+        reviews: PropTypes.number,
+        numGuest: PropTypes.number,
+        numBed: PropTypes.number,
+        numBedRoom: PropTypes.number,
+        numBathRoom: PropTypes.number,
+      }),
+    ),
+  }).isRequired,
 };
 
 export default RoomList;

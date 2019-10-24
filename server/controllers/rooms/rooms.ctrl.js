@@ -31,10 +31,8 @@ const { saveCache } = require('../../middlewares/roomCache');
 const getAllRooms = async (req, res, next) => {
   const pageOption = paginate(req.query.page, process.env.PAGE_LIMIT);
   try {
-    const { count, rows: rooms } = await models.Room.findAndCountAll(
-      pageOption,
-    );
-    res.status(200).send({ count, rooms });
+    const rooms = await models.Room.findAndCountAll(pageOption);
+    res.status(200).send([rooms]);
   } catch (err) {
     next(err);
   }
@@ -78,7 +76,7 @@ const getAllRooms = async (req, res, next) => {
 const getFilteredRooms = async (req, res, next) => {
   const pageOption = paginate(req.query.page, process.env.PAGE_LIMIT);
   try {
-    const { count, rows: rooms } = await models.Room.findAndCountAll({
+    const rooms = await models.Room.findAndCountAll({
       ...pageOption,
       where: req.roomQuery,
       include: [
@@ -89,7 +87,7 @@ const getFilteredRooms = async (req, res, next) => {
         },
       ],
     });
-    res.status(200).send({ count, rooms });
+    res.status(200).send([rooms]);
   } catch (err) {
     next(err);
   }
