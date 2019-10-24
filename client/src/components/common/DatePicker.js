@@ -8,6 +8,9 @@ import isInclusivelyAfterDay from '../../utils/isInclusivelyAfterDay';
 
 const DatePicker = ({ date, setStart, setEnd }) => {
   const [focus, setFocus] = useState('startDate');
+  const { start, end } = date;
+  const startObj = start ? moment(start) : null;
+  const endObj = end ? moment(end) : null;
 
   const onDatesChange = ({ startDate, endDate }) => {
     setStart(startDate);
@@ -22,8 +25,8 @@ const DatePicker = ({ date, setStart, setEnd }) => {
     <DayPickerRangeController
       numberOfMonths={2}
       isOutsideRange={(day) => !isInclusivelyAfterDay(day, moment())}
-      startDate={date.start}
-      endDate={date.end}
+      startDate={startObj}
+      endDate={endObj}
       onDatesChange={onDatesChange}
       focusedInput={focus}
       onFocusChange={onFocusChange}
@@ -33,8 +36,14 @@ const DatePicker = ({ date, setStart, setEnd }) => {
 
 DatePicker.propTypes = {
   date: PropTypes.shape({
-    start: PropTypes.shape({}),
-    end: PropTypes.shape({}),
+    start: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({}),
+    ]),
+    end: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({}),
+    ]),
   }).isRequired,
   setStart: PropTypes.func.isRequired,
   setEnd: PropTypes.func.isRequired,
