@@ -4,19 +4,17 @@ import styled from 'styled-components';
 
 const S = {
   Wrapper: styled.div`
-    width:360px;
-    height:300px;
     position:absolute;
-    background:#fff;
-    color:#000;
+    margin-top:8px;
+    background:${({ theme }) => theme.palette.white};
+    color:${({ theme }) => theme.palette.black};
     z-index:999;
-    box-shadow:rgba(0, 0, 0, 0.15) 0px 10px 37px;
+    box-shadow:${({ theme }) => theme.palette.shadow};
     border: 1px solid rgba(118, 118, 118, 0.28);
     border-radius:12px;
     display:flex;
     flex-direction:column;
     justify-content:space-around;
-    padding:10px;
   `,
 };
 

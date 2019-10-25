@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'react-dates/initialize';
 import { DayPickerRangeController } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
+import '../../styles/datepicker.css';
 import isInclusivelyAfterDay from '../../utils/isInclusivelyAfterDay';
 
 const DatePicker = ({ date, setStart, setEnd }) => {
@@ -30,6 +30,8 @@ const DatePicker = ({ date, setStart, setEnd }) => {
       onDatesChange={onDatesChange}
       focusedInput={focus}
       onFocusChange={onFocusChange}
+      transitionDuration={0}
+      hideKeyboardShortcutsPanel
     />
   );
 };
