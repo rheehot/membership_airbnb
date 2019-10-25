@@ -3,9 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: {
-    app: Path.resolve(__dirname, '../src/index.js'),
-  },
+  entry: ['regenerator-runtime/runtime', 'client/src/index.js'],
   output: {
     path: Path.join(__dirname, '../build'),
     filename: 'js/bundle.js',

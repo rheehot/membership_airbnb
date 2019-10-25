@@ -5,10 +5,12 @@ export const fetchRooms = async (dispatch, options) => {
     dispatch({
       type: 'FETCH_ROOMS_REQUEST',
     });
-    const responses = await services.fetchFilteredRooms(options);
+    const { data } = await services.fetchFilteredRooms(options);
+    const rooms = data[0];
+
     dispatch({
       type: 'FETCH_ROOMS_SUCCESS',
-      payload: { rooms: responses.data },
+      payload: { rooms },
     });
   } catch (e) {
     dispatch({

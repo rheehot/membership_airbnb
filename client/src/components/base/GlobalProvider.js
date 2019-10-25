@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 import { DispatchContext, GlobalContext } from '../../contexts';
-import { initialState, reducer } from '../../store';
+import { reducer, initialState } from '../../store/reducers';
 
 const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
