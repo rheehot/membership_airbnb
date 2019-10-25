@@ -8,7 +8,6 @@ module.exports = merge(common, {
   devtool: 'cheap-eval-source-map',
   devServer: {
     inline: true,
-    historyApiFallback: true,
   },
   plugins: [
     new Webpack.DefinePlugin({
@@ -23,7 +22,7 @@ module.exports = merge(common, {
         enforce: 'pre',
         loader: 'eslint-loader',
         options: {
-          emitWarning: false,
+          emitWarning: true,
         },
       },
       {
@@ -31,7 +30,16 @@ module.exports = merge(common, {
         include: Path.resolve(__dirname, '../src'),
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                targets: { chrome: '55' },
+                debug: true,
+              },
+            ],
+            '@babel/preset-react',
+          ],
         },
       },
       {
