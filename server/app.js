@@ -28,6 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', express.static(path.join(__dirname, 'build')));
 app.use('/api', require('./controllers'));
 
 app.use((req, res, next) => {
