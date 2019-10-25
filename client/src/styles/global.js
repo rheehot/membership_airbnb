@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+ *:focus {outline:none}
   body {
     margin: 0;
     font-family: 'Noto Sans KR', sans-serif;
