@@ -1,5 +1,6 @@
 export const initialState = {
-  options: null,
+  reserv: {},
+  options: {},
   rooms: null,
   loading: false,
   error: null,
@@ -7,6 +8,11 @@ export const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'SET_RESERV':
+      return {
+        ...state,
+        reserv: action.payload.reserv,
+      };
     case 'SET_OPTIONS':
       return {
         ...state,
