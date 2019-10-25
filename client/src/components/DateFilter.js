@@ -14,7 +14,10 @@ const DateFilter = ({ closeModal }) => {
   const [end, setEnd] = useState(options.check_out || null);
 
   const submitHandler = () => {
-    setOption(dispatch, options, { check_in: moment(start).format('YYYY-MM-DD'), check_out: moment(end).format('YYYY-MM-DD') });
+    setOption(dispatch, options, {
+      check_in: (start) ? moment(start).format('YYYY-MM-DD') : null,
+      check_out: (end) ? moment(end).format('YYYY-MM-DD') : null,
+    });
     closeModal();
   };
 
